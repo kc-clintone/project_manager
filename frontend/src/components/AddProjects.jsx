@@ -13,7 +13,9 @@ export default function AddClients() {
 	const [status, setStatus] = useState('new');
 
 	// get clients
-	const { loading, error, data } = useQuery(GET_CLIENTS);
+	const data = useQuery(GET_CLIENTS);
+	const loading = useQuery(GET_CLIENTS);
+	const error = useQuery(GET_CLIENTS);
 
 	// addProject query
 	const [addProject] = useMutation(ADD_PROJECT, {
@@ -123,7 +125,7 @@ export default function AddClients() {
 												onChange={(e) => setClientId(e.target.value)}
 											>
 												<option value=''>Select client</option>
-												{data.map((client) => (
+												{data?.map((client) => (
 													<option key={client.id} value={client.id}>
 														{client.name}
 													</option>
